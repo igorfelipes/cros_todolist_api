@@ -7,6 +7,7 @@ import { auth } from "./middlewares/auth";
 
 import userRoutes from "../app/user";
 import sessionRoutes from "../app/session";
+import taskRoutes from "../app/task";
 
 const routes = Router();
 
@@ -30,6 +31,7 @@ routes.use(wrapper(auth, { middleware: true }));
 initializeRoutes(
   routes,
   userRoutes.privateRoutes,
+  taskRoutes
 );
 
 export default routes;

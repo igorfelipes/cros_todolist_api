@@ -63,46 +63,12 @@ export class ErrorCode {
       }),
   };
 
-  public static CREATE_BID = {
-    CAR_NOT_FOUND: new BusinessError({
-      code: "UC-BID-CREATE-0001",
-      message: `Carro não encontrado`,
+  public static UPDATE_TASK = {
+    TASK_NOT_FOUND: new BusinessError({
+      code: "UC-TASK-UPDATE-0001",
+      message: `Task não encontrada`,
       details: {},
     }),
-    USER_NOT_FOUND: new BusinessError({
-      code: "UC-BID-CREATE-0002",
-      message: `Usuário não encontrado`,
-      details: {},
-    }),
-    INVALID_AMOUNT: new BusinessError({
-      code: "UC-BID-CREATE-0003",
-      message: `Valor inválido`,
-      details: {
-        reference: "amount",
-        detail: "O valor deve ser maior que o valor inicial do carro",
-      },
-    }),
-  }
-
-  public static CLOSE_AUCTION = {
-    CAR_NOT_FOUND: new BusinessError({
-      code: "UC-CLOSE-AUCTION-CAR-0001",
-      message: `Carro não encontrado`,
-      details: {},
-    }),
-    BID_NOT_FOUND: new BusinessError({
-      code: "UC-CLOSE-AUCTION-CAR-0002",
-      message: `Lance não encontrado`,
-      details: {
-        reference: "amount",
-        detail: "O carro não possui lances",
-      },
-    }),
-    AUCTION_ALREADY_CLOSED: new BusinessError({
-      code: "UC-CLOSE-AUCTION-CAR-0003",
-      message: `Leilão já está fechado`,
-      details: {},
-    })
   }
 
 }

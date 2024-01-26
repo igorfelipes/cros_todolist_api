@@ -7,7 +7,7 @@ export class TaskMysqlRepository implements TaskRepository {
 		const { id, title, description, status, createdBy } = data;
 		return new Task({ id, title, description, status, createdBy });
 	}
-	async findMany() {
+	async loadAll() {
 		const data = await prisma.task.findMany();
 		return data ? data.map(this.adaptToDomain) : [];
 	}

@@ -41,7 +41,10 @@ export class UserService
     const userExists = await this.repository.loadByEmail(data.email);
     if (userExists) throw ErrorCode.USER_CREATE.EMAIL_ALREADY_IN_USE;
 
-    return await this.repository.create(data);
+    return await this.repository.create({
+      ...data,
+      password: generatePasswordHash(data.password!),
+    });
   }
 
   async update(

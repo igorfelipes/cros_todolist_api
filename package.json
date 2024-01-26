@@ -1,5 +1,5 @@
 {
-	"name": "nodejs-express-boilerplate",
+	"name": "cros-todolist-api",
 	"version": "0.1.0",
 	"main": "dist/server.js",
 	"license": "MIT",

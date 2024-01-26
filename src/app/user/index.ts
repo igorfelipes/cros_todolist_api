@@ -11,7 +11,7 @@ import {
 } from "./functions";
 import { userCreate, userUpdate } from "./schema";
 
-const router: Router = {
+const privateRoutes: Router = {
   basePath: "users",
   routes: [
     {
@@ -46,4 +46,16 @@ const router: Router = {
   ],
 };
 
-export default router;
+const publicRoutes: Router = {
+  basePath: "users",
+  routes: [
+    {
+      path: "/signup",
+      method: "post",
+      controller: create,
+      middlewares: [validate({ body: userCreate })],
+    },
+  ],
+};
+
+export default {publicRoutes, privateRoutes};

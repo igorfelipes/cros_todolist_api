@@ -16,6 +16,7 @@ const routes = Router();
 initializeRoutes(
   routes,
   sessionRoutes,
+  userRoutes.publicRoutes
 );
 
 const root = async () => {
@@ -28,7 +29,7 @@ routes.use(wrapper(auth, { middleware: true }));
 
 initializeRoutes(
   routes,
-  userRoutes,
+  userRoutes.privateRoutes,
 );
 
 export default routes;

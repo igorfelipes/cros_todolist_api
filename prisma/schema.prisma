@@ -20,6 +20,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   sessions Session[]
+  tasks    Task[]
 }
 
 
@@ -33,3 +34,36 @@ model Session {
   user      User     @relation(fields: [userId], references: [id])
 }
 
+enum TaskStatus {
+  OPEN
+  IN_PROGRESS
+  DONE
+}
+
+
+model Task {
+  id        String   @id @default(cuid())
+  title     String
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String
+  status    TaskStatus @default(OPEN)
+
+  user      User     @relation(fields: [createdBy], references: [id])
+
+  parentTasks TaskHasSubTask[] @relation("TaskToSubtask")
+  childTasks TaskHasSubTask[] @relation("SubtaskToTask")
+}
+
+
+model TaskHasSubTask {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  taskId    String
+  subTaskId String
+
+  task   Task   @relation("TaskToSubtask", fields: [taskId], references: [id])
+  subtask Task   @relation("SubtaskToTask", fields: [subTaskId], references: [id])
+}
